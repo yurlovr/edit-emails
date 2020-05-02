@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="./main.js"></script>
+    <title>app</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="app1" style="margin-top: 50px;"></div>
+    <script>
+      const emailContainer = document.querySelector('#app')
+      const emailsInput = InputEmail(emailContainer, {
+        defaultCount: 2,
+        predefinedEmails: ['yurlovr@gmail.com'],
+        showButtons: true,
+        timeOut: 0,
+      })
+      const emailContainer1 = document.querySelector('#app1')
+      const emailsInput1 = InputEmail(emailContainer1, {
+        predefinedEmails: ['yurlovr@gmail.com'],
+        showButtons: false,
+        timeOut: 5000,
+      })
+    </script>
+  </body>
+</html>
