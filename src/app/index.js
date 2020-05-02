@@ -12,5 +12,8 @@ window.InputEmail =  (elem, options) => {
     subscribe: model.subscribe,
     show: model.show,
     hide: model.hide,
+    deleteAll: model.deleteAllEmails,
+    replaceAll: model.replaceAllEmails,
+    getAll: model.getAllEmails
   }
 }

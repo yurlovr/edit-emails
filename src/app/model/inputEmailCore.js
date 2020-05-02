@@ -62,7 +62,36 @@ export default class Model {
   }
 
   addEmail = (mail) => {
-    this.emails = this.emails.concat(mail)
+    if (!mail) return
+    if (typeof mail === 'number') {
+      for (let i = 1; i <= mail; i++) {
+        this.emails = this.emails.concat(addRandomEmail(i))
+      }
+    }
+    if (typeof mail === 'string' && mail.trim()) {
+      this.emails = this.emails.concat({
+        email: mail,
+        id: setId(mail, this.emails),
+        isValid: true
+      })
+    }
+    if (Array.isArray(mail) && mail.every(i => typeof i === 'string')) {
+      mail.forEach(i => {
+        this.emails = this.emails.concat({
+          email: i,
+          id: setId(i, this.emails),
+          isValid: true
+        })
+      })
+    }
+    if (Array.isArray(mail) && mail.every(i => i === Object(i)) && mail.every(i => i.email && i.id && i.isValid)) {
+      mail.forEach(i => {
+        this.emails = this.emails.concat({ ...i, id: setId(i.id, this.emails) })
+      })
+    }
+    if (mail.email && mail.id) {
+      this.emails = this.emails.concat(mail)
+    }
     this.renderEmailList()
   }
 
@@ -86,6 +115,30 @@ export default class Model {
       })
     this.clearInput()
     }
+  }
+
+  deleteAllEmails = () => {
+    const emails = this.OBJECT_MODEL_ELEMENTS.emailList.querySelectorAll('.email_item')
+    emails.forEach(email => {
+      this.delEmailFromDOM(email.id)
+    })
+    this.emails = []
+  }
+
+  replaceAllEmails = (emails) => {
+    if (!emails ||
+        typeof emails === 'number' ||
+        (emails === Object(emails) && !Array.isArray(emails)) ||
+        (Array.isArray(emails) && emails.some(i => typeof i !== 'string'))) return
+    if (typeof emails === 'string') {
+      emails = [].concat(emails)
+    }
+    this.deleteAllEmails()
+    this.initDefaultEmail(emails)
+  }
+
+  getAllEmails = () => {
+    return this.emails
   }
 
   keyPress = (event) => {

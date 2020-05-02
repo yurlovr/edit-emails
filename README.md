@@ -66,9 +66,12 @@ const options = {
 
 ```js
     getCount
+    getAll
     addEmail
     delAllInvalid
     subscribe
+    replaceAll
+    deleteAll
     show
     hide
 ```
@@ -77,9 +80,12 @@ const options = {
 
   Функция, возвращает количество emails  
 
+  `getAll`  
+  Функция, возвращает массив emails  
+
 `addEmail`  
 
-Функция, добавляет email принимает объект, если объект не передан, то добавится рандомный email
+Функция, добавляет email принимает `объект`,  
 ```js
 {
   email: "ex@ex.ex",
@@ -87,15 +93,36 @@ const options = {
   isValid: true
 }
 ```
+`массив объектов email` - в этом случае добавятся все переданные email, (свойтсва email, id, isValid - обязательные)
+```js
+[
+  {
+    email: "ex@ex.ex",
+    id: "12345",
+    isValid: true
+  },
+  {
+    email: "ex@ex.ex",
+    id: "12345",
+    isValid: true
+  }
+]
+```
+`число` - в этом случае в форму добавятся рандомные email, количество которых будет равно переданному числу  
+`строка` - в этом случае добавится переданный email  
+`массив email` - в этом случае добавятся переданные email  
+```js
+['ws@ws.eu', 'sx@rf.tu', 'fvv.rf.dh']
+```
 И добавляет данный email в форму
 
 `delAllInvalid`  
 
-Функция - удаляет все невалидные emails
+Функция - удаляет все невалидные emails  
 
 `subscribe`  
 
-Принимает функцию, которая будет вызвана при изменении emails
+Принимает функцию, которая будет вызвана при изменении emails  
 В эту функцию передается массив объектов email, возвращает объект с методом отписки  
 ```js
 {
@@ -130,14 +157,24 @@ subscribtion.unsubscribe()
   }
 ]
 ```
+`deleteAll`  
+Функция, удаляет все введенные emails  
 
+`replaceAll`  
+Функция, заменяет все введенные emails на переданные.  
+Принимает в качестве аргумента `строку` или `массив строк`  
+```js
+replaceAll('email@email.ru')
+
+replaceAll(['email@email.ru', 'example@example.ru'])
+```
 
 `show`  
-Функция отображает форму
+Функция отображает форму  
 
 `hide`  
 
-Функция скрывает форму
+Функция скрывает форму  
 
 
 ## Example
