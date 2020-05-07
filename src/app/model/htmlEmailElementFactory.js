@@ -1,7 +1,6 @@
-import { EMAIL_REG } from '../const'
-import myEvent from './myEvent'
+const EMAIL_REG = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
 
-export default function htmlFactoryEmailElement (email, del) {
+export default function htmlFactoryEmailElement (email, deleteHandler) {
   const result = document.createElement('li')
   if (!result.hasAttribute('input-email')) {
     result.setAttribute('input-email', '')
@@ -18,10 +17,7 @@ export default function htmlFactoryEmailElement (email, del) {
   buttonDelete.classList.add('email_item-del')
   result.id = email.id
   result.textContent = email.email
-  myEvent(result, {
-    event: 'click',
-    callback: del
-  })
+  result.addEventListener('click', deleteHandler)
   result.insertAdjacentElement('beforeend', buttonDelete)
   return result
 }

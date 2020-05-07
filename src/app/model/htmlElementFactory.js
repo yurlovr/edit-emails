@@ -1,13 +1,16 @@
 export default function htmlElementFactory () {
+  const emailList = document.createElement('ul')
+  const li = document.createElement('li')
+  const inputEmail = document.createElement('input')
+  emailList.classList.add('email_list')
+  emailList.classList.add('email_container')
+  li.classList.add('email_item-input')
+  inputEmail.classList.add('email_input')
+  inputEmail.type = 'text'
+  inputEmail.placeholder = 'add more people…'
   return {
-    sectionEmails: document.createElement('section'),
-    header: document.createElement('h1'),
-    emailContainer: document.createElement('div'),
-    emailList: document.createElement('ul'),
-    li: document.createElement('li'),
-    inputEmail: document.createElement('input'),
-    buttonsSection: document.createElement('section'),
-    buttonAdd: document.createElement('button'),
-    buttonCount: document.createElement('button')
+    emailList,
+    li,
+    inputEmail
   }
 }

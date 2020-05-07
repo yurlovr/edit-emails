@@ -3,7 +3,7 @@ import htmlFactoryEmailElement from './htmlEmailElementFactory'
 import htmlElementFactory from './htmlElementFactory'
 import setId from '../libs/setId'
 import EventObserver from './EventObserver'
-import renderEmailsForm from './renderEmailsForm'
+import setAttribut from './setAttribut'
 import initHtmlForm from './initHtmlForm'
 
 export default class Model {
@@ -21,21 +21,9 @@ export default class Model {
 
   initDefaultEmail = (count) => {
     let result = []
-    if (Array.isArray(count)) {
-      result = count.map(item => {
-        const result = {
-          email: item.toString(),
-          id: setId(item, this.emails),
-          isValid: true
-        }
-        return result
-      })
-    }
-    if (typeof count === 'number') {
       for (let i = 1; i <= count; i++) {
         result = result.concat(addRandomEmail(i))
       }
-    }
     this.emails = this.emails.concat(result)
     return this.renderEmailList()
   }
@@ -63,32 +51,6 @@ export default class Model {
 
   addEmail = (mail) => {
     if (!mail) return
-    if (typeof mail === 'number') {
-      for (let i = 1; i <= mail; i++) {
-        this.emails = this.emails.concat(addRandomEmail(i))
-      }
-    }
-    if (typeof mail === 'string' && mail.trim()) {
-      this.emails = this.emails.concat({
-        email: mail,
-        id: setId(mail, this.emails),
-        isValid: true
-      })
-    }
-    if (Array.isArray(mail) && mail.every(i => typeof i === 'string')) {
-      mail.forEach(i => {
-        this.emails = this.emails.concat({
-          email: i,
-          id: setId(i, this.emails),
-          isValid: true
-        })
-      })
-    }
-    if (Array.isArray(mail) && mail.every(i => i === Object(i)) && mail.every(i => i.email && i.id && i.isValid)) {
-      mail.forEach(i => {
-        this.emails = this.emails.concat({ ...i, id: setId(i.id, this.emails) })
-      })
-    }
     if (mail.email && mail.id) {
       this.emails = this.emails.concat(mail)
     }
@@ -96,8 +58,7 @@ export default class Model {
   }
 
   countEmail = () => {
-    alert(`Список email состоит из ${this.emails.length}.`)
-    return this.emails.length
+    alert(`The email list consists of ${this.emails.length}.`)
   }
 
   inputEmail = (event) => {
@@ -126,19 +87,9 @@ export default class Model {
   }
 
   replaceAllEmails = (emails) => {
-    if (!emails ||
-        typeof emails === 'number' ||
-        (emails === Object(emails) && !Array.isArray(emails)) ||
-        (Array.isArray(emails) && emails.some(i => typeof i !== 'string'))) return
-    if (typeof emails === 'string') {
-      emails = [].concat(emails)
-    }
+    if (!emails ||  typeof emails !== 'number') return
     this.deleteAllEmails()
     this.initDefaultEmail(emails)
-  }
-
-  getAllEmails = () => {
-    return this.emails
   }
 
   keyPress = (event) => {
@@ -209,41 +160,12 @@ export default class Model {
         change: this.onChange,
         click: this.addEmailClick,
         clickCount: this.countEmail
-      },
-      showButtons: this.options.showButtons
+      }
     })
-    if (this.options.defaultCount) {
-      this.initDefaultEmail(this.options.defaultCount)
-    }
     if (this.options.predefinedEmails) {
       this.initDefaultEmail(this.options.predefinedEmails)
     }
-    if (this.options.timeOut) {
-      setTimeout (() => {
-        renderEmailsForm({
-          element: this.element,
-          sectionEmails: this.OBJECT_MODEL_ELEMENTS.sectionEmails,
-          buttonsSection: this.OBJECT_MODEL_ELEMENTS.buttonsSection,
-          id: this.element.id,
-          position: this.options.position
-        })
-      }, this.options.timeOut)
-    } else {
-      renderEmailsForm({
-        element: this.element,
-        sectionEmails: this.OBJECT_MODEL_ELEMENTS.sectionEmails,
-        buttonsSection: this.OBJECT_MODEL_ELEMENTS.buttonsSection,
-        id: this.element.id,
-        position: this.options.position
-      })
-    }
-  }
-  show = () => {
-    if (this.wrapperElement.classList.contains('hidden')) {
-      this.wrapperElement.classList.remove('hidden')
-    }
-  }
-  hide = () => {
-      this.wrapperElement.classList.add('hidden')
+    this.element.insertAdjacentElement('afterbegin', this.OBJECT_MODEL_ELEMENTS.emailList)
+    setAttribut(this.element.id)
   }
 }

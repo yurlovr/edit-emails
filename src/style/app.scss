@@ -1,19 +1,19 @@
-h1[input-email] {
+h1 {
   margin: 0;
   padding: 0;
 }
-p[input-email] {
+p {
   margin: 0;
   padding: 0;
 }
 
-ul[input-email] {
+ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-button[input-email] {
+button {
   padding: 0;
   border: none;
   font: inherit;
@@ -22,7 +22,7 @@ button[input-email] {
   cursor: pointer;
 }
 
-.wrapper[input-email] {
+.wrapper {
   font-family: Open Sans;
   margin-left: auto;
   margin-right: auto;
@@ -32,16 +32,18 @@ button[input-email] {
   border-radius: 8px;
 }
 
-.container[input-email] {
+.container {
   padding-left: 50px;
   padding-right: 50px;
   padding-top: 32px;
   padding-bottom: 24px;
   background-color: #F8F8F7;
   border-radius: 8px 8px 0px 0px;
+  max-width: 440px;
+  margin: 0 auto;
 }
 
-.header_text[input-email] {
+.header_text {
   margin-bottom: 24px;
   font-family: Open Sans;
   font-style: normal;
@@ -54,7 +56,7 @@ button[input-email] {
   }
 }
 
-.email_container[input-email] {
+.email_container {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -86,6 +88,8 @@ button[input-email] {
   &_list[input-email] {
     display: flex;
     flex-wrap: wrap;
+    height: 100px;
+    align-items: baseline;
   }
   &_item[input-email] {
     padding-left: 10px;
@@ -153,14 +157,17 @@ button[input-email] {
   }
 }
 
-.buttons_container[input-email] {
+.buttons_container {
   padding-top: 24px;
   padding-left: 50px;
-  max-width: 100%;
   background-color: #FFFFFF;
   border-radius: 8px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  max-width: 540px;
+  margin: 0 auto;
 }
-.button[input-email] {
+.button {
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
@@ -174,7 +181,4 @@ button[input-email] {
   &:last-child {
     margin-left: 16px;
   }
-}
-.hidden[input-email] {
-  display: none;
 }

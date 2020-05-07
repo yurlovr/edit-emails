@@ -7,13 +7,12 @@ window.InputEmail =  (elem, options) => {
   })
   return {
     getCount: model.countEmail,
-    addEmail: model.addEmail,
-    delAllInvalid: model.delAllInvalid,
+    addEmail: model.addEmailClick,
     subscribe: model.subscribe,
-    show: model.show,
-    hide: model.hide,
-    deleteAll: model.deleteAllEmails,
     replaceAll: model.replaceAllEmails,
-    getAll: model.getAllEmails
   }
 }
+
+window.init = InputEmail(document.querySelector('#app'), {
+  predefinedEmails: 2,
+})
