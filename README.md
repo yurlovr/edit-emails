@@ -9,14 +9,24 @@
 # Подключение
 
 ```html
-  <head>
-    <script src="./main.js"></script>
-  </head>
   <body>
-    <div id="app"></div>
+    <div class="wrapper">
+      <section class="container">
+        <h1 class="header_text">
+          Share <span>Board name</span> with others
+        </h1>
+        <div id="app"></div>
+      </section>
+      <section class="buttons_container">
+        <button class="button" onclick="emailsInput.addEmail()">Add mail</button>
+        <button class="button" onclick="emailsInput.getCount()">Get emails count</button>
+      </section>
+    </div>
     <script>
-      const inputElement = document.querySelector('#app')
-      const emailsInput = InputEmail(inputElement, { options })
+      const emailContainer = document.querySelector('#app')
+      const emailsInput = InputEmail(emailContainer, {
+        predefinedEmails: 2,
+      })
     </script>
   </body>
 ```
