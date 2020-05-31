@@ -1,1 +1,46 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>app</title></head><body><form class="wrapper"><section class="container"><h1 class="header_text">Share <span>Board name</span> with others</h1><div id="app"></div></section><section class="buttons_container"><button class="button" onclick="init.addEmail()">Add mail</button> <button class="button" onclick="init.getCount()">Get emails count</button></section></form><script src="./main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="./main.js"></script>
+    <title>app</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <section class="container">
+        <h1 class="header_text">
+          Share <span>Board name</span> with others
+        </h1>
+        <div id="app"></div>
+      </section>
+      <section class="buttons_container">
+        <button class="button" onclick="emailsInput.addEmail()">Add mail</button>
+        <button class="button" onclick="emailsInput.getCount()">Get emails count</button>
+      </section>
+    </div>
+    <div class="wrapper">
+      <section class="container">
+        <h1 class="header_text">
+          Share <span>Board name</span> with others
+        </h1>
+        <div id="app1"></div>
+      </section>
+      <section class="buttons_container">
+        <button class="button" onclick="emailsInput1.addEmail()">Add mail</button>
+        <button class="button" onclick="emailsInput1.getCount()">Get emails count</button>
+      </section>
+    </div>
+    <script>
+      const emailContainer = document.querySelector('#app')
+      const emailsInput = InputEmail(emailContainer, {
+        predefinedEmails: 2,
+      })
+      const emailContainer1 = document.querySelector('#app1')
+      const emailsInput1 = InputEmail(emailContainer1, {
+        predefinedEmails: 5,
+      })
+    </script>
+  </body>
+</html>

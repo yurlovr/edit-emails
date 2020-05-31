@@ -10,9 +10,13 @@ window.InputEmail =  (elem, options) => {
     addEmail: model.addEmailClick,
     subscribe: model.subscribe,
     replaceAll: model.replaceAllEmails,
+    deleteAllInvalid: model.deleteAllInvalid,
+    getAllEmails: model.getAllEmails
   }
 }
 
-window.init = InputEmail(document.querySelector('#app'), {
-  predefinedEmails: 2,
-})
+// window.init = InputEmail(document.querySelector('#app'), {
+// })
+// window.init1 = InputEmail(document.querySelector('#app1'), {
+//   predefinedEmails: 3,
+// })

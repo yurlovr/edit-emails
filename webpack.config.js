@@ -26,12 +26,7 @@ module.exports = {
       },
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: __dirname + "/src/public/index.html",
-      inject: 'body'
-  })
-  ],
+  plugins: [],
   devServer: {
       contentBase: './src/public',
       port: 7700,

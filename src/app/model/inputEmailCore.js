@@ -61,6 +61,10 @@ export default class Model {
     alert(`The email list consists of ${this.emails.length}.`)
   }
 
+  getAllEmails = () => {
+    return this.emails
+  }
+
   inputEmail = (event) => {
     this.inputValue = event.target.value
     if (~this.inputValue.indexOf(',')) {
@@ -90,6 +94,17 @@ export default class Model {
     if (!emails ||  typeof emails !== 'number') return
     this.deleteAllEmails()
     this.initDefaultEmail(emails)
+  }
+
+  deleteAllInvalid = () => {
+    this.emails = this.emails.map(item => {
+      if (!item.isValid) {
+        this.delEmailFromDOM(item.id)
+        return null
+      }
+      return item
+    }).filter(Boolean)
+    this.observer.broadcast(this.emails)
   }
 
   keyPress = (event) => {
